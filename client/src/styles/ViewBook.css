@@ -1,0 +1,76 @@
+/* Main container */
+.view-book {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 30px;
+  background-color: #f4f6f9;
+  min-height: 100vh;
+}
+
+/* Category item styling */
+.file {
+  background-color: #ffffff;
+  padding: 15px 20px;
+  border-radius: 8px;
+  border: 2px solid #ddd;
+  width: 200px;
+  display: flex;
+  justify-content: flex-start; /* Align the content to the left */
+  align-items: center; /* Center the content vertically */
+  text-align: left;  /* Align text to the left */
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Icon inside the category */
+.file i {
+  margin-right: 10px; /* Space between the icon and the text */
+  font-size: 1.5rem; /* Adjust icon size */
+}
+
+/* Hover effect */
+.file:hover {
+  background-color: #1b3fb4;
+  color: #fff;
+  transform: translateY(-5px); /* Slightly lift the item on hover */
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
+
+.file:focus {
+  outline: none;
+  border-color: #0d0d0d;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+}
+
+/* Accessibility: focus styling for keyboard navigation */
+.file:focus-visible {
+  outline: 2px solid #162daa;
+}
+
+/* Font styling for category names */
+.file {
+  font-family: 'Arial', sans-serif;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-align: left; /* Align text to the left */
+  line-height: 1.5; /* Adjust line-height for readability */
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .view-book {
+    padding: 20px;
+  }
+
+  .file {
+    width: 160px; /* Make the category items a bit smaller on mobile */
+    font-size: 1rem;
+    padding: 10px 15px;
+  }
+}

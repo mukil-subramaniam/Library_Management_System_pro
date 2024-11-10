@@ -1,0 +1,107 @@
+/* Container for the Add Book Form */
+.add-book-container {
+    max-width: 900px; /* Increased max-width for a larger form */
+    margin: 30px auto; /* Centers the container horizontally with some margin */
+    padding: 20px;
+    
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    width: 100%; /* Ensure the container doesn't stretch beyond max-width */
+    box-sizing: border-box; /* Ensure padding doesn't affect the width */
+    max-height: 80vh; /* Limit height for scrollable effect */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+  }
+  
+  /* Heading for the form */
+  .add-book-container h2 {
+    text-align: center;
+    color: #333;
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+  
+  /* Message Box for success or error */
+  .message {
+    text-align: center;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f0f8ff;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    color: #333;
+  }
+  
+  /* Form Layout */
+  .add-book-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 20px;
+    margin-top: 10px;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  label {
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #444;
+  }
+  
+  input, select, textarea {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+  
+  input:focus, select:focus, textarea:focus {
+    border-color: #007bff;
+  }
+  
+  input[type="file"] {
+    padding: 0;
+    font-size: 1rem;
+    border: none;
+  }
+  
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+  
+  select {
+    background-color: #fff;
+  }
+  
+  /* Submit Button Styling */
+  button.submit-btn {
+    grid-column: span 2;
+    padding: 12px 20px;
+    font-size: 1.1rem;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button.submit-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Responsive Design for Small Screens */
+  @media (max-width: 768px) {
+    .add-book-form {
+      grid-template-columns: 1fr; /* Stack form fields on smaller screens */
+    }
+  }
+  

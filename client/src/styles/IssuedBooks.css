@@ -1,0 +1,67 @@
+/* Styling for the Issued Books Component */
+.issued-books {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 1000px;
+  margin: 20px auto;
+}
+
+/* Title Styling */
+.issued-books h2 {
+  text-align: center;
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Table Styling */
+.issued-books-table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.issued-books-table th, .issued-books-table td {
+  padding: 12px 15px;
+  text-align: left;
+  font-size: 1rem;
+  color: #333;
+}
+
+.issued-books-table th {
+  background-color: #4CAF50;
+  color: #fff;
+  font-weight: bold;
+  border-bottom: 2px solid #ddd;
+}
+
+.issued-books-table td {
+  border-bottom: 1px solid #f1f1f1;
+}
+
+/* Hover effect for rows */
+.issued-books-table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Action column - approved status styling */
+.action-approved {
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+  .issued-books-table th, .issued-books-table td {
+    padding: 10px;
+  }
+  
+  .issued-books {
+    margin: 10px;
+  }
+}

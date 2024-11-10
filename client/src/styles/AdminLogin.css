@@ -1,0 +1,70 @@
+.login-page {
+  width: 100%;
+  max-width: 400px;
+  margin: 10px auto;
+  padding: 30px; /* Reduced padding */
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+h2 {
+  font-size: 24px; /* Slightly smaller font size */
+  color: #333333;
+  margin-bottom: 20px; /* Reduced spacing below heading */
+  font-weight: 600;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+  padding: 12px; /* Reduced padding */
+  margin-bottom: 15px; /* Reduced margin */
+  font-size: 15px;
+  color: #555555;
+  border: 1px solid #dddddd;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+  background-color: #f8f9fa;
+}
+
+input:focus {
+  border-color: #007bff;
+  background-color: #ffffff;
+  outline: none;
+}
+
+button {
+  width: 100%;
+  background-color: #007bff;
+  color: white;
+  padding: 12px; /* Reduced padding */
+  font-size: 15px; /* Slightly smaller font size */
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, transform 0.2s;
+}
+
+button:hover {
+  background-color: #0056b3;
+  transform: translateY(-2px);
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.error-message {
+  color: #ff4d4d;
+  font-size: 13px; /* Slightly smaller font size */
+  margin-top: 10px; /* Reduced spacing above error message */
+}
