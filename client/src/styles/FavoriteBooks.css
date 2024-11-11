@@ -1,98 +1,112 @@
-/* Main container */
+/* Container for favorite books */
 .favorite-books {
-  padding: 40px;
-  background-color: #f9f9f9;
-  min-height: 100vh;
-
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  background-image: url('https://www.elibrarysoftware.com/img/library-management-system.jpg'); /* Add your background image here */
+  background-size: cover; /* Ensure the image covers the entire screen */
+  background-position: center; /* Center the image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  min-height: 100vh; /* Ensures the container takes up the full height of the screen */
 }
 
-/* Message when there are no favorite books */
+/* Message when no books are found */
 .no-books-message {
   font-size: 1.5rem;
+  color: #888;
+  font-weight: 500;
   text-align: center;
-  color: #666;
+  margin-top: 50px;
 }
 
-/* List of books */
+/* List of favorite books */
 .books-list {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
   gap: 20px;
-  padding: 20px;
+  margin-top: 20px;
 }
 
-/* Individual book card */
+/* Book card style */
 .book-card {
-  background-color: #fff;
+  background-color: white;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 250px;
   overflow: hidden;
-  transition: transform 0.3s ease-in-out;
-  width: 400px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
 }
 
 .book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  transform: translateY(-10px);
 }
 
 /* Book image styling */
 .book-image img {
-  width: 90%;
-  height: 250px;
+  width: 100%;
+  height: auto;
   object-fit: cover;
   border-bottom: 2px solid #eee;
 }
 
-/* Book details styling */
+/* Book details section */
 .book-details {
   padding: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  color: #333;
 }
 
 .book-title {
-  font-size: 1.5rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: bold;
   color: #333;
-  margin: 10px 0;
+  margin: 0;
 }
 
-.book-author, .book-price, .book-isbn {
+.book-author,
+.book-price,
+.book-isbn {
   font-size: 1rem;
   color: #555;
-  margin: 5px 0;
+  margin: 0;
 }
 
-/* Buy link */
+.book-author strong,
+.book-price strong,
+.book-isbn strong {
+  color: #333;
+}
+
+/* Buy link styling */
 .buy-link {
-  display: inline-block;
-  background-color: #007bff;
-  color: white;
-  padding: 8px 12px;
-  border-radius: 5px;
+  text-align: center;
+  font-size: 1rem;
+  color: #0066cc;
   text-decoration: none;
-  font-weight: 500;
-  transition: background-color 0.3s ease;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
 }
 
 .buy-link:hover {
-  background-color: #0056b3;
+  color: #004a99;
+  text-decoration: underline;
 }
 
-/* Media Query for responsiveness */
 @media (max-width: 768px) {
-  .favorite-books {
-    padding: 20px;
+  /* Adjust layout for smaller screens */
+  .book-card {
+    width: 100%;
+    max-width: 300px;
   }
 
   .books-list {
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  }
-
-  .book-card {
-    margin-bottom: 20px;
-  }
-
-  .book-title {
-    font-size: 1.3rem;
+    gap: 15px;
   }
 }

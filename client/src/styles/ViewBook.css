@@ -1,76 +1,85 @@
-/* Main container */
+
+/* The main container that holds categories */
 .view-book {
+  display: grid;
+
+  grid-template-columns: repeat(6, 1fr); /* 6 items per row */
+  gap: 40px; /* Adjusted space between the items */
+  padding: 20px;
+  max-height: 80vh; /* Restrict to 80% of the viewport height */
+  width: 90%; /* Set a width of 90% for responsive design */
+  box-sizing: border-box;
+  /* Removed overflow-y: auto to avoid scrolling */
+}
+
+/* Category Item Styling */
+.file {
   display: flex;
-  flex-wrap: wrap;
+  
+  flex-direction: column; /* Arrange icon and text vertically */
   justify-content: center;
-  gap: 20px;
-  padding: 30px;
-  background-color: #f4f6f9;
-  min-height: 100vh;
-}
-
-/* Category item styling */
-.file {
-  background-color: #ffffff;
-  padding: 15px 20px;
-  border-radius: 8px;
-  border: 2px solid #ddd;
-  width: 200px;
-  display: flex;
-  justify-content: flex-start; /* Align the content to the left */
-  align-items: center; /* Center the content vertically */
-  text-align: left;  /* Align text to the left */
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #333;
+  align-items: center;
+  background: linear-gradient(135deg, #007bff, #1e3c72);
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
   cursor: pointer;
-  transition: all 0.3s ease;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  width: 100%;
+  text-align: center; /* Ensure text is centered */
 }
 
-/* Icon inside the category */
-.file i {
-  margin-right: 10px; /* Space between the icon and the text */
-  font-size: 1.5rem; /* Adjust icon size */
-}
-
-/* Hover effect */
 .file:hover {
-  background-color: #1b3fb4;
-  color: #fff;
-  transform: translateY(-5px); /* Slightly lift the item on hover */
-  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.file:focus {
-  outline: none;
-  border-color: #0d0d0d;
-  box-shadow: 0 0 10px rgba(76, 175, 80, 0.3);
+.file i {
+  font-size: 2.5em;
+  margin-bottom: 10px;
 }
 
-/* Accessibility: focus styling for keyboard navigation */
-.file:focus-visible {
-  outline: 2px solid #162daa;
-}
-
-/* Font styling for category names */
-.file {
-  font-family: 'Arial', sans-serif;
+.file span {
+  font-size: 1em;
   font-weight: 500;
-  letter-spacing: 0.5px;
-  text-align: left; /* Align text to the left */
-  line-height: 1.5; /* Adjust line-height for readability */
 }
 
-/* Media query for responsiveness */
+/* Media Queries for Better Responsiveness */
 @media (max-width: 768px) {
   .view-book {
-    padding: 20px;
+    grid-template-columns: repeat(3, 1fr); /* 3 items per row on smaller screens */
+    gap: 20px; /* Adjusted gap for smaller screens */
   }
 
   .file {
-    width: 160px; /* Make the category items a bit smaller on mobile */
-    font-size: 1rem;
-    padding: 10px 15px;
+    padding: 12px; /* Adjust padding for smaller screens */
+  }
+
+  .file i {
+    font-size: 2em;
+  }
+
+  .file span {
+    font-size: 0.9em;
+  }
+}
+
+@media (max-width: 480px) {
+  .view-book {
+    grid-template-columns: repeat(2, 1fr); /* 2 items per row on very small screens */
+    gap: 15px; /* Adjusted gap for very small screens */
+  }
+
+  .file {
+    padding: 10px;
+  }
+
+  .file i {
+    font-size: 1.8em;
+  }
+
+  .file span {
+    font-size: 0.8em;
   }
 }

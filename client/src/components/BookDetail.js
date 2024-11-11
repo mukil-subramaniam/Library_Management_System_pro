@@ -11,7 +11,6 @@ const BookDetail = () => {
   const username = localStorage.getItem('username');
 
   useEffect(() => {
-    // Fetch book details when the component mounts or isbn changes
     const fetchBookDetails = async () => {
       try {
         const response = await fetch(`http://localhost:5000/api/books/${isbn}`);
@@ -70,11 +69,11 @@ const BookDetail = () => {
 
   // Render loading state or error message
   if (error) {
-    return <p className="error-message">{error}</p>; // Show error message if fetching fails
+    return <p className="error-message">{error}</p>;
   }
 
   if (!book) {
-    return <p>Loading book details...</p>; // Show loading message while data is being fetched
+    return <p>Loading book details...</p>;
   }
 
   return (

@@ -16,6 +16,12 @@ const FavoriteBooks = () => {
     }
   }, []);
 
+  const removeFromFavorites = (bookId) => {
+    const updatedBooks = favoriteBooks.filter((book) => book._id !== bookId);
+    setFavoriteBooks(updatedBooks);
+    localStorage.setItem('favourites', JSON.stringify(updatedBooks));
+  };
+
   return (
     <div className="favorite-books">
       {favoriteBooks.length === 0 ? (
@@ -33,6 +39,12 @@ const FavoriteBooks = () => {
                 <p className="book-price"><strong>Price:</strong> ${book.price}</p>
                 <p className="book-isbn"><strong>ISBN:</strong> {book.isbn}</p>
                 <a href={book.link} target="_blank" rel="noopener noreferrer" className="buy-link">Buy on Amazon</a>
+                <button
+                  className="remove-button"
+                  onClick={() => removeFromFavorites(book._id)}
+                >
+                  Remove from Favorites
+                </button>
               </div>
             </div>
           ))}

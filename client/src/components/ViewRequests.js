@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import '../styles/ViewRequests.css';
 
 const ViewRequests = () => {
-  const [requests, setRequests] = useState([]); // State to hold the fetched data
+  const [requests, setRequests] = useState([]);
 
   // Fetch data from the API
   useEffect(() => {
@@ -10,7 +10,7 @@ const ViewRequests = () => {
       try {
         const response = await fetch('http://localhost:5000/api/book-requests/data');
         const data = await response.json();
-        setRequests(data); // Set the data in state
+        setRequests(data);
       } catch (error) {
         console.error('Error fetching book requests:', error);
       }
@@ -27,7 +27,7 @@ const ViewRequests = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ action: 'approved' }), // Set the action to "approve"
+        body: JSON.stringify({ action: 'approved' }),
       });
 
       if (response.ok) {
@@ -52,7 +52,7 @@ const ViewRequests = () => {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ action: 'rejected' }), // Set the action to "reject"
+        body: JSON.stringify({ action: 'rejected' }),
       });
 
       if (response.ok) {
@@ -71,7 +71,7 @@ const ViewRequests = () => {
 
   return (
     <div className="view-requests">
-      <h2 className="header">View Book Requests</h2>
+      
       <table className="requests-table">
         <thead>
           <tr>

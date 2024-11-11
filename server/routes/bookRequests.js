@@ -1,6 +1,7 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const BookRequest = require('../models/BookRequest'); // Import the BookRequest model
+const cron = require('node-cron'); // Import node-cron to schedule tasks
 
 const router = express.Router();
 
@@ -11,6 +12,39 @@ const transporter = nodemailer.createTransport({
         user: 'kecguesthouse24@gmail.com', // Your email
         pass: 'mwuifougiqfbaksy', // Your email password or app password
     },
+});
+
+// Cron job to check overdue books and send emails
+cron.schedule('0 0 * * *', async () => { // Runs at midnight every day
+    try {
+        const today = new Date();
+        const overdueRequests = await BookRequest.find({
+            action: 'approved', // Only look for approved books
+            endDate: { $lt: today }, // Check if the end date is before today
+        });
+
+        overdueRequests.forEach(async (request) => {
+            const overdueDays = Math.floor((today - new Date(request.endDate)) / (1000 * 60 * 60 * 24)); // Calculate overdue days
+            const fineAmount = overdueDays * 1; // Fine is 1 rupee per day
+
+            const mailOptions = {
+                from: 'kecguesthouse24@gmail.com', // Sender address
+                to: request.email, // Recipient email from fetched data
+                subject: `Your book request due date is over`,
+                text: `Hello ${request.username},\n\nYour book titled "${request.bookTitle}" was due on ${new Date(request.endDate).toLocaleDateString()}. It is now overdue by ${overdueDays} days, and you owe a fine of ₹${fineAmount}.\n\nPlease return the book as soon as possible.\n\nThank you!`,
+            };
+
+            transporter.sendMail(mailOptions, (error, info) => {
+                if (error) {
+                    console.error('Error sending overdue email:', error);
+                } else {
+                    console.log('Overdue email sent:', info.response);
+                }
+            });
+        });
+    } catch (error) {
+        console.error('Error checking overdue books:', error);
+    }
 });
 
 // Route to get all book requests
@@ -40,6 +74,8 @@ router.post('/req', async (req, res) => {
             bookTitle,
             email, // Store email for notification purposes
             action: 'pending', // Set initial action status
+            startDate: new Date(), // Set the start date as current date
+            endDate: new Date(new Date().setDate(new Date().getDate() + 15)), // Set end date 15 days from now
         });
 
         // Save the request to the database
@@ -98,7 +134,7 @@ router.put('/update/:id', async (req, res) => {
                 from: 'kecguesthouse24@gmail.com', // sender address
                 to: userData.email, // recipient email from fetched data
                 subject: `Your book request has been ${action}`,
-                text: `Hello ${userData.username},\n\nYour book request titled "${userData.bookTitle}" has been ${action} Starting data is ${new Date().toLocaleString()} and nd date is  ${formattedApprovedDate}.\n\nThank you!`,
+                text: `Hello ${userData.username},\n\nYour book request titled "${userData.bookTitle}" has been ${action}. Starting date is ${new Date().toLocaleString()} and the end date is ${formattedApprovedDate}.\n\nThank you!`,
             };
         } else {
             // Prepare email options for rejected action

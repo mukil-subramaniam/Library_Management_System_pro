@@ -18,6 +18,7 @@
   .close-btn {
     background: none;
     border: none;
+   
     color: white;
     font-size: 20px;
     cursor: pointer;
@@ -48,10 +49,16 @@
     color: rgb(15, 14, 14);
     text-decoration: none;
     display: block;
+    
+  }
+  ul li a:hover {
+   background-color: aliceblue;
+   padding: 5px;
+    
   }
   
   ul li a:hover {
-    background-color: khaki;
+    
     text-decoration: none;
   }
   

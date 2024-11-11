@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/ViewBook.css';
 
@@ -31,7 +31,6 @@ const ViewBook = () => {
   const navigate = useNavigate();
 
   const handleFileClick = (category) => {
-    // Navigate to the category page using the category name
     navigate(`/books/${category}`);
   };
 
@@ -50,7 +49,6 @@ const ViewBook = () => {
             }
           }}
         >
-          {/* Icon and text */}
           <i className={category.icon}></i>
           {category.name}
         </div>
