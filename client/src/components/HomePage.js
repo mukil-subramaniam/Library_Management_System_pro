@@ -26,7 +26,7 @@ const HomePage = () => {
     const fetchBooks = async () => {
       setLoading(true);
       try {
-        const response = await fetch('http://localhost:5000/api/books/all');
+        const response = await fetch('https://library-management-system-pro-backend.onrender.com/all');
         if (!response.ok) {
           throw new Error('Failed to fetch books');
         }
