@@ -1,4 +1,4 @@
-const BASE_URL = 'http://localhost:5000/api'; // Adjust the base URL according to your server
+const BASE_URL = 'https://library-management-system-pro-backend.onrender.com/api'; // Adjust the base URL according to your server
 
 // Function to log in as Admin
 export const adminLogin = async (username, password) => {
