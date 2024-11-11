@@ -16,7 +16,9 @@ const HomePage = () => {
   // Retrieve the username from localStorage
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
-    setUsername(storedUsername);
+    if (storedUsername) {
+      setUsername(storedUsername);
+    }
   }, []);
 
   // Fetch all books from the API
@@ -37,7 +39,6 @@ const HomePage = () => {
         setLoading(false);
       }
     };
-
     fetchBooks();
   }, []); // Runs once when the component mounts
 
@@ -45,7 +46,6 @@ const HomePage = () => {
   const handleSearchChange = (e) => {
     const query = e.target.value;
     setSearchQuery(query);
-
     // Filter books based on the search query
     if (query.trim() !== '') {
       const lowerQuery = query.toLowerCase();
@@ -102,7 +102,6 @@ const HomePage = () => {
       <button className="toggle-btn" onClick={toggleSidebar}>
         ☰
       </button>
-
       {/* Sidebar */}
       <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
         <button className="close-btn" onClick={closeSidebar}>
@@ -137,7 +136,6 @@ const HomePage = () => {
               ☰
             </button>
           </div>
-
           {/* Center - Search Bar */}
           <div className="header-center">
             <div className="search-bar">
@@ -152,7 +150,6 @@ const HomePage = () => {
                 Search
               </button>
             </div>
-
             {/* Display suggestions if search results exist */}
             {searchQuery && filteredBooks.length > 0 && (
               <div className="search-suggestions">
@@ -168,7 +165,6 @@ const HomePage = () => {
               </div>
             )}
           </div>
-
           {/* Right - Username & Logout */}
           <div className="header-right">
             <div className="user-info">
@@ -182,6 +178,9 @@ const HomePage = () => {
         </header>
 
         <div className="content-area">
+          {/* Show loading or error state */}
+          {loading && <p>Loading books...</p>}
+          {error && <p>{error}</p>}
           {/* Main content goes here */}
         </div>
       </div>
