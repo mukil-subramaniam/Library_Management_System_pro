@@ -18,7 +18,7 @@ const BookCategory = () => {
 
     const fetchBooksByCategory = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/books/all'); // Fetch all books
+        const response = await fetch('https://library-management-system-pro-backend.onrender.com/api/books/all'); // Fetch all books
         if (!response.ok) {
           throw new Error('Network response was not ok'); // Handle network errors
         }
@@ -38,7 +38,7 @@ const BookCategory = () => {
 
   const handleGetBook = async (book) => {
     try {
-      const response = await fetch('http://localhost:5000/api/book-requests/req', {
+      const response = await fetch('https://library-management-system-pro-backend.onrender.com/api/book-requests/req', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -93,7 +93,7 @@ const BookCategory = () => {
             <div className="book-card" key={book._id}>
               {book.image && (
                 <img
-                  src={`http://localhost:5000/${book.image}`}
+                  src={`https://library-management-system-pro-backend.onrender.com/${book.image}`}
                   alt={book.title}
                   className="book-image"
                 />
