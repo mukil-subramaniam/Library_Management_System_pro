@@ -12,7 +12,7 @@ const AdminDashboard = () => {
   useEffect(() => {
     const fetchTotalUsers = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/user/users/count');
+        const response = await fetch('https://library-management-system-pro-backend.onrender.com/api/user/users/count');
         if (!response.ok) {
           throw new Error('Failed to fetch user count');
         }
