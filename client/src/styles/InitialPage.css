@@ -1,85 +1,225 @@
+/* Initial Page - Modern Professional Design */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap");
+
+:root {
+  --primary-color: #4361ee;
+  --primary-light: #eef2ff;
+  --text-primary: #333;
+  --text-secondary: #666;
+  --background: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05);
+  --transition: all 0.3s ease;
+}
 
 
-/* Initial Page */
+
+body {
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
 .initial-page {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: url('https://www.elibrarysoftware.com/img/library-management-system.jpg') center/cover no-repeat, 
-              linear-gradient(135deg, #eceff1, #ffffff);
+  background: linear-gradient(135deg, #f6f9fc, #eef2ff);
   padding: 20px;
+  overflow: hidden;
 }
 
-
-.content-container {
-  background: #ffffff;
-  border-radius: 10px;
-  padding: 30px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-  max-width: 500px;
+.card {
+  background: var(--card-bg);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
   width: 100%;
+  max-width: 480px;
+  overflow: hidden;
+  transform: translateY(30px);
+  opacity: 0;
+  transition: transform 0.6s ease, opacity 0.6s ease, box-shadow 0.3s ease;
 }
 
-h2 {
-  font-size: 24px;
-  color: #333;
-  margin-bottom: 15px;
+.card-loaded {
+  transform: translateY(0);
+  opacity: 1;
 }
 
-p {
-  font-size: 16px;
-  color: #555;
-  margin-bottom: 20px;
+.card:hover {
+  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.08);
+}
+
+.card-content {
+  padding: 2.5rem;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 64px;
+  height: 64px;
+  background: var(--primary-light);
+  border-radius: 12px;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.logo:hover {
+  transform: scale(1.05);
+}
+
+.title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-align: center;
+  margin-bottom: 0.75rem;
+}
+
+.subtitle {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-bottom: 2rem;
+  line-height: 1.5;
 }
 
 .image-container {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: var(--transition);
+}
+
+.image-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
 }
 
 .library-image {
   width: 100%;
-  max-width: 350px;
-  border-radius: 10px;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  height: auto;
+  display: block;
+  object-fit: cover;
+  transition: var(--transition);
 }
 
-select.role-select {
+.select-wrapper {
+  position: relative;
+  margin-bottom: 1.5rem;
+}
+
+.role-select {
   width: 100%;
-  padding: 12px;
+  padding: 0.875rem 1rem;
+  font-size: 1rem;
+  color: var(--text-primary);
+  background-color: var(--background);
+  border: 1px solid var(--border-color);
   border-radius: 8px;
-  border: 1px solid #ddd;
-  background-color: #f9f9f9;
-  font-size: 16px;
-  color: #555;
+  appearance: none;
   cursor: pointer;
-  margin-top: 20px;
-  transition: all 0.3s ease;
+  transition: var(--transition);
+  font-family: inherit;
 }
 
-select.role-select:hover {
-  border-color: #0056b3;
-  background-color: #e6f0ff;
-}
-
-/* Option Styling */
-select.role-select option {
-  padding: 10px;
-  font-size: 16px;
-}
-
-select.role-select:focus {
+.role-select:focus {
   outline: none;
-  border-color: #0056b3;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.15);
 }
 
-@media screen and (max-width: 768px) {
-  .content-container {
-    padding: 20px;
-  }
+.select-arrow {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 10px;
+  height: 10px;
+  border-right: 2px solid var(--text-secondary);
+  border-bottom: 2px solid var(--text-secondary);
+  pointer-events: none;
+  transform: translateY(-50%) rotate(45deg);
+  transition: var(--transition);
+}
 
-  .library-image {
-    max-width: 100%;
+.select-wrapper:hover .select-arrow {
+  border-color: var(--primary-color);
+}
+
+.info-text {
+  text-align: center;
+}
+
+.info-text p {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* Animation for elements */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
+.title,
+.subtitle,
+.image-container,
+.select-wrapper,
+.info-text {
+  animation: fadeIn 0.5s ease forwards;
+  opacity: 0;
+}
+
+.title {
+  animation-delay: 0.2s;
+}
+
+.subtitle {
+  animation-delay: 0.3s;
+}
+
+.image-container {
+  animation-delay: 0.4s;
+}
+
+.select-wrapper {
+  animation-delay: 0.5s;
+}
+
+.info-text {
+  animation-delay: 0.6s;
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 576px) {
+  .card-content {
+    padding: 1.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .subtitle {
+    font-size: 0.875rem;
+  }
+}
+
