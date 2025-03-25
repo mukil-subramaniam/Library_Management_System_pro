@@ -7,10 +7,10 @@ const HomePage = () => {
   const [username, setUsername] = useState('');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [books, setBooks] = useState([]); // All books from the API
-  const [filteredBooks, setFilteredBooks] = useState([]); // Filtered books based on search
-  const [loading, setLoading] = useState(false); // Loading state for API request
-  const [error, setError] = useState(null); // For error handling
+  const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const navigate = useNavigate();
 
   // Retrieve the username from localStorage
@@ -40,7 +40,7 @@ const HomePage = () => {
       }
     };
     fetchBooks();
-  }, []); // Runs once when the component mounts
+  }, []);
 
   // Handle the search query input change
   const handleSearchChange = (e) => {
@@ -57,7 +57,7 @@ const HomePage = () => {
       );
       setFilteredBooks(filtered);
     } else {
-      setFilteredBooks([]); // If search query is empty, clear the filtered results
+      setFilteredBooks([]);
     }
   };
 
@@ -78,7 +78,7 @@ const HomePage = () => {
   // Handle logout
   const handleLogout = () => {
     localStorage.removeItem('username');
-    navigate('/'); // Redirect to login page
+    navigate('/');
   };
 
   // Toggle sidebar open/close
@@ -97,91 +97,127 @@ const HomePage = () => {
   };
 
   return (
-    <div className="home-page">
-      {/* Toggle Button */}
-      <button className="toggle-btn" onClick={toggleSidebar}>
-        ☰
-      </button>
-      {/* Sidebar */}
-      <aside className={`sidebar ${isSidebarOpen ? 'open' : ''}`}>
-        <button className="close-btn" onClick={closeSidebar}>
-          ✖
-        </button>
-        <h2 className="sidebar-title">Library Management</h2>
-        <ul className="sidebar-menu">
-          <li>
-            <Link to="/view-book" className="sidebar-link">
-              View Books
-            </Link>
-          </li>
-          <li>
-            <Link to="/issued-book" className="sidebar-link">
-              Issued Books
-            </Link>
-          </li>
-          <li>
-            <Link to="/favorites" className="sidebar-link">
-              View Favorites
-            </Link>
-          </li>
-        </ul>
-      </aside>
-
-      {/* Main Content */}
-      <div className="main-content">
-        <header className="header">
-          {/* Left - Toggle Button */}
-          <div className="header-left">
-            <button className="toggle-btn" onClick={toggleSidebar}>
-              ☰
+    <div className="app-container">
+      <div className="home-page">
+        {/* Overlay for when sidebar is open */}
+        {isSidebarOpen && <div className="overlay fade-in" onClick={closeSidebar}></div>}
+        
+        {/* Sidebar */}
+        <aside className={`sidebar ${isSidebarOpen ? 'open slide-in' : ''}`}>
+          <div className="sidebar-header">
+            <h2 className="sidebar-title">Library Management</h2>
+            <button className="close-btn" onClick={closeSidebar}>
+              <span>&times;</span>
             </button>
           </div>
-          {/* Center - Search Bar */}
-          <div className="header-center">
-            <div className="search-bar">
-              <input
-                type="text"
-                placeholder="Search the books"
-                value={searchQuery}
-                onChange={handleSearchChange}
-                className="search-input"
-              />
-              <button className="search-btn" onClick={handleSearchClick}>
-                Search
+          <div className="sidebar-divider"></div>
+          <ul className="sidebar-menu">
+            <li>
+              <Link to="/view-book" className="sidebar-link">
+                <span className="sidebar-icon">📚</span>
+                <span>View Books</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/issued-book" className="sidebar-link">
+                <span className="sidebar-icon">📖</span>
+                <span>Issued Books</span>
+              </Link>
+            </li>
+            <li>
+              <Link to="/favorites" className="sidebar-link">
+                <span className="sidebar-icon">⭐</span>
+                <span>View Favorites</span>
+              </Link>
+            </li>
+          </ul>
+        </aside>
+
+        {/* Main Content */}
+        <div className="main-content fade-in">
+          <header className="header">
+            {/* Left - Toggle Button */}
+            <div className="header-left">
+              <button className="toggle-btn" onClick={toggleSidebar}>
+                <span></span>
+                <span></span>
+                <span></span>
               </button>
             </div>
-            {/* Display suggestions if search results exist */}
-            {searchQuery && filteredBooks.length > 0 && (
-              <div className="search-suggestions">
-                <ul>
-                  {filteredBooks.map((book) => (
-                    <li key={book._id} onClick={() => handleBookClick(book.isbn)}>
-                      <span className="suggestion-link">
-                        {book.title} by {book.author}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
+            
+            {/* Center - Search Bar */}
+            <div className="header-center">
+              <div className="search-bar">
+                <input
+                  type="text"
+                  placeholder="Search books by title, author, or ISBN..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  className="search-input"
+                />
+                <button className="search-btn" onClick={handleSearchClick}>
+                  <span className="search-icon">🔍</span>
+                  <span>Search</span>
+                </button>
+              </div>
+              
+              {/* Display suggestions if search results exist */}
+              {searchQuery && filteredBooks.length > 0 && (
+                <div className="search-suggestions">
+                  <ul>
+                    {filteredBooks.map((book) => (
+                      <li key={book._id} onClick={() => handleBookClick(book.isbn)}>
+                        <span className="suggestion-title">{book.title}</span>
+                        <span className="suggestion-author">by {book.author}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+            
+            {/* Right - Username & Logout */}
+            <div className="header-right">
+              <div className="user-info">
+                <div className="profile-container">
+                  <img src={profileIcon || "/placeholder.svg"} alt="Profile" className="profile-icon" />
+                </div>
+                <span className="username">{username}</span>
+                <button className="logout-btn" onClick={handleLogout}>
+                  Logout
+                </button>
+              </div>
+            </div>
+          </header>
+
+          <div className="content-area">
+            {/* Show loading or error state */}
+            {loading && (
+              <div className="loading-container fade-in">
+                <div className="loading-spinner"></div>
+                <p>Loading books...</p>
+              </div>
+            )}
+            
+            {error && (
+              <div className="error-container fade-in">
+                <p className="error-message">{error}</p>
+                <button className="retry-btn" onClick={() => window.location.reload()}>
+                  Retry
+                </button>
+              </div>
+            )}
+            
+            {/* Main content placeholder */}
+            {!loading && !error && (
+              <div className="welcome-container fade-in">
+                <h1 className="welcome-title">Welcome to the Library Management System</h1>
+                <p className="welcome-message">
+                  Use the sidebar to navigate through different sections or search for books above.
+                </p>
               </div>
             )}
           </div>
-          {/* Right - Username & Logout */}
-          <div className="header-right">
-            <div className="user-info">
-              <img src={profileIcon} alt="Profile" className="profile-icon" />
-              <span className="username">{username}</span>
-              <button className="logout-btn" onClick={handleLogout}>
-                Logout
-              </button>
-            </div>
-          </div>
-        </header>
-
-        <div className="content-area">
-          {/* Show loading or error state */}
-          {loading && <p>Loading books...</p>}
-          {error && <p>{error}</p>}
-          {/* Main content goes here */}
         </div>
       </div>
     </div>
