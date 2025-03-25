@@ -41,67 +41,72 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-page">
-      <h2>User Signup</h2>
-      {error && <p className="error-message">{error}</p>}
-      {success && <p className="success-message">{success}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="form-group">
-          <label>Username</label>
+    <div className="signup-container">
+      <h2 className="signup-header">User Signup</h2>
+      {error && <p className="signup-error-message">{error}</p>}
+      {success && <p className="signup-success-message">{success}</p>}
+      <form className="signup-form" onSubmit={handleSubmit}>
+        <div className="signup-form-group">
+          <label className="signup-label">Username</label>
           <input
             type="text"
             name="username"
+            className="signup-input"
             placeholder="Enter Username"
             value={user.username}
             onChange={handleChange}
             required
           />
         </div>
-        <div className="form-group">
-          <label>Email</label>
+        <div className="signup-form-group">
+          <label className="signup-label">Email</label>
           <input
             type="email"
             name="email"
+            className="signup-input"
             placeholder="Enter Email"
             value={user.email}
             onChange={handleChange}
             required
           />
         </div>
-        <div className="form-group">
-          <label>Full Name</label>
+        <div className="signup-form-group">
+          <label className="signup-label">Full Name</label>
           <input
             type="text"
             name="name"
+            className="signup-input"
             placeholder="Enter Full Name"
             value={user.name}
             onChange={handleChange}
             required
           />
         </div>
-        <div className="form-group">
-          <label>Password</label>
+        <div className="signup-form-group">
+          <label className="signup-label">Password</label>
           <input
             type="password"
             name="password"
+            className="signup-input"
             placeholder="Enter Password"
             value={user.password}
             onChange={handleChange}
             required
           />
         </div>
-        <div className="form-group">
-          <label>Phone Number</label>
+        <div className="signup-form-group">
+          <label className="signup-label">Phone Number</label>
           <input
             type="tel"
             name="phone"
+            className="signup-input"
             placeholder="Enter Phone Number"
             value={user.phone}
             onChange={handleChange}
             required
           />
         </div>
-        <button type="submit">Signup</button>
+        <button type="submit" className="signup-button">Signup</button>
       </form>
     </div>
   );
