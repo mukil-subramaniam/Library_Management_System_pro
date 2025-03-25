@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/Sidebar.css'; // Import sidebar styles
+import '../styles/Sidebar.css'; // Import updated sidebar styles
 
 const Sidebar = ({ isOpen, toggleSidebar }) => {
   return (
@@ -15,7 +15,7 @@ const Sidebar = ({ isOpen, toggleSidebar }) => {
           <Link to="/view-requests" onClick={toggleSidebar}>View Book Requests</Link>
         </li>
         <li>
-          <Link to="/manage-books" onClick={toggleSidebar}>Manage Books</Link> {/* New Manage Books link */}
+          <Link to="/manage-books" onClick={toggleSidebar}>Manage Books</Link>
         </li>
         <li>
           <Link to="/" onClick={toggleSidebar}>Logout</Link>
